@@ -4,16 +4,25 @@ $(document).ready(function () {
 //   $(".country").focus(function () {
 //     $(".wrapper-country").show();
 //   });
-// $( ".wrapper-country" ).click(function( e ) { // задаем функцию при нажатии на элемент <button> или <input>
-//     e.stopPropagation(); // предотвращаем всплытие события
-//     $( ".wrapper-country" ).is( ":visible" ) ?  null : $( ".wrapper-country" ).fadeIn() // проверяем является ли элемент <input> видимым, если нет, то вызываем эффект fadeIn
-                    
-//     $( "html" ).one({ // приcоединяем функцию обработчика, которая будет выполнена не более одного раза по типу события "click"
-//       "click": function( e ) { 
-//       $( ".wrapper-country" ).is( ":visible" ) ? $( ".wrapper-country   " ).fadeOut() : null // проверяем является ли элемент <input> видимым, если да, то вызываем эффект fadeOut
-//       }
-//     })
-//   })
+$('.wrapper-country').click(function(){
+    // скрываем все блоки
+    $('.wrapper-country').css("display","none"); 
+    // убираем активный класс для продукта
+    // $(".wrapper-country").removeClass("product-active")
+    // Показываем блок у данного продукта
+    $(this).parent(".wrapper-country").children('.wrapper-country').css("display","block");
+    // Данному продукта добавляем класс
+    // $(this).parent(".product-one").addClass("product-active");
+});
+ 
+$(document).click(function (e){ // событие клика по веб-документу
+    var div = $('.wrapper-country'); // тут указываем класс элемента
+    if (!div.is(e.target) // если клик был не по нашему блоку
+        && div.has(e.target).length === 0) { // и не по его дочерним элементам
+        div.hide(); // скрываем его
+    }
+});
+
   $(".wrapper-country ul li").click(function (e) {
     let text = $(this).val("li").text();
     $(".country").val(text);
