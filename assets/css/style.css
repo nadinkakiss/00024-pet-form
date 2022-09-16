@@ -318,6 +318,7 @@ body {
   position: absolute;
   z-index: 999999;
   width: 100%;
+  display: none;
 }
 
 .main .container .main__form .form-wrapper5 .wrapper-country ul li {
